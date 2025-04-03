@@ -17,10 +17,10 @@ namespace BiddingManagementSystem.Domain.Entities
 
         public DateTime SubmittedAt { get; private set; }
 
-        private readonly List<BidDocument> _documents = [];
+        private readonly List<BidDocument> _documents = []; // VALUE OBJECT
         public IReadOnlyCollection<BidDocument> Documents => _documents.AsReadOnly();
 
-        private readonly List<BidItem> _items = new();
+        private readonly List<BidItem> _items = [];
         public IReadOnlyCollection<BidItem> Items => _items.AsReadOnly();
 
         private Bid() { }

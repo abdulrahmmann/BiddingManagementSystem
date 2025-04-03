@@ -16,6 +16,12 @@ namespace BiddingManagementSystem.Infrastructure.Configurations
                    .HasColumnName("BidderId")
                    .ValueGeneratedOnAdd()
                    .UseIdentityColumn();
+
+            builder.HasOne(t => t.Tender)
+                .WithMany(b => b.Bidders)
+                .HasForeignKey(t => t.TenderId)
+                .OnDelete(DeleteBehavior.NoAction)
+                .HasConstraintName("FK_Bidder_Tender");
         }
     }
 }

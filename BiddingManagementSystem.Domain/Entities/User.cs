@@ -31,8 +31,8 @@ namespace BiddingManagementSystem.Domain.Entities
         // ------------------------> RELATIONS <------------------------ //
         // ************************************************************* //
 
-        public List<Tender> CreatedTenders { get; private set; } = [];
+        public ICollection<Tender> CreatedTenders { get; private set; } = [];
 
-        public List<Bid> SubmittedBids { get; private set; } = [];
+        public ICollection<Bid> SubmittedBids { get; private set; } = [];
     }
 }

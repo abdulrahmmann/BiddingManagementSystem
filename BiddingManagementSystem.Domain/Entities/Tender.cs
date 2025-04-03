@@ -31,10 +31,10 @@ namespace BiddingManagementSystem.Domain.Entities
 
         public Address Address { get; private set; } = null!;// VALUE OBJECT
 
-        private readonly List<EligibilityCriteria> _eligibilityCriteria = [];
+        private readonly List<EligibilityCriteria> _eligibilityCriteria = []; // VALUE OBJECT
         public IReadOnlyCollection<EligibilityCriteria> EligibilityCriteria => _eligibilityCriteria.AsReadOnly();
 
-        public readonly List<TenderDocument> _documents = [];
+        public readonly List<TenderDocument> _documents = []; // VALUE OBJECT
         public IReadOnlyCollection<TenderDocument> Documents => _documents.AsReadOnly();
 
         public PaymentTerms PaymentTerms { get; private set; } = null!; // VALUE OBJECT
@@ -81,5 +81,6 @@ namespace BiddingManagementSystem.Domain.Entities
         // NAVIGATION PROPERTIES
         public User User { get; private set; } = null!;
         public ICollection<Bid> Bids { get; private set; } = [];
+        public ICollection<Bidder> Bidders { get; private set; } = [];
     }
 }

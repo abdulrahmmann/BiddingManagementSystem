@@ -1,5 +1,7 @@
 ﻿using BiddingManagementSystem.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
+using System.Reflection;
 
 namespace BiddingManagementSystem.Infrastructure.Context
 {
@@ -12,6 +14,23 @@ namespace BiddingManagementSystem.Infrastructure.Context
         public virtual DbSet<BidItem> BidItems { get; set; }
         public virtual DbSet<Bidder> Bidders { get; set; }
 
+        public ApplicationContext() { }
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
+        protected override void ConfigureConventions(ModelConfigurationBuilder builder)
+        {
+            base.ConfigureConventions(builder);
+
+            builder.Properties<DateOnly>()
+                   .HaveConversion<DateOnlyConverter>()
+                   .HaveColumnType("date");
+
+            builder.Properties<DateTime>().HaveColumnType("datetime");
+        }
     }
 }

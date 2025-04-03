@@ -44,6 +44,22 @@ namespace BiddingManagementSystem.Infrastructure.Configurations
                    .OnDelete(DeleteBehavior.NoAction)
                    .HasConstraintName("FK_Bid_User");
 
+            builder.OwnsMany(b => b.Documents, doc =>
+            {
+                doc.WithOwner();
+                doc.Property(d => d.Name)
+                   .HasColumnName("DocumentName")
+                   .IsRequired()
+                   .HasMaxLength(16);
+
+                doc.Property(d => d.FilePath)
+                   .HasColumnName("DocumentPath")
+                   .IsRequired()
+                   .HasMaxLength(255);
+            });
+
+
+
         }
     }
 }
