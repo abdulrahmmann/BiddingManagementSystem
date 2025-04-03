@@ -2,9 +2,9 @@
 {
     public enum UserRole
     {
-        Admin,
-        ProcurementOfficer,
-        Bidder,
-        Evaluator
+        Admin = 1,
+        ProcurementOfficer = 2,
+        Bidder = 3,
+        Evaluator = 4
     }
 }

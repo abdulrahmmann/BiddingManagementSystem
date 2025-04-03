@@ -41,7 +41,7 @@ namespace BiddingManagementSystem.Domain.Entities
 
         public Tender(int referenceNumber, string title, string description, string issuedBy, DateTime deadline,
             DateTime issueDate, DateTime closingDate, string email, TenderType type, TenderIndustry industry,
-            Money budgetRange, int createdById, User createdBy)
+            Money budgetRange, int createdById, User User)
         {
             ReferenceNumber = referenceNumber;
             Title = title;
@@ -55,7 +55,7 @@ namespace BiddingManagementSystem.Domain.Entities
             Industry = industry;
             BudgetRange = budgetRange;
             CreatedById = createdById;
-            CreatedBy = createdBy;
+            this.User = User;
         }
 
         public void AddDocument(TenderDocument document)
@@ -79,7 +79,7 @@ namespace BiddingManagementSystem.Domain.Entities
 
 
         // NAVIGATION PROPERTIES
-        public User CreatedBy { get; private set; } = null!;
+        public User User { get; private set; } = null!;
         public ICollection<Bid> Bids { get; private set; } = [];
     }
 }

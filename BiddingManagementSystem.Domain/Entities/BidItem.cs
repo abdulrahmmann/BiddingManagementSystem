@@ -3,6 +3,7 @@
     public class BidItem
     {
         public int Id { get; private set; }
+        public string Name { get; private set; } = string.Empty;
         public string Description { get; private set; } = string.Empty;
         public int Quantity { get; private set; }
         public decimal UnitPrice { get; private set; }

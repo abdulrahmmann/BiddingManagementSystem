@@ -1,4 +1,5 @@
 ﻿using BiddingManagementSystem.Domain.Enums;
+using BiddingManagementSystem.Domain.ValueObjects;
 
 namespace BiddingManagementSystem.Domain.Entities
 {
@@ -63,5 +64,7 @@ namespace BiddingManagementSystem.Domain.Entities
         public Tender Tender { get; private set; } = null!;
         public User User { get; private set; } = null!;
         public Bidder Bidder { get; private set; }
+
+        public ICollection<Evaluation> Evaluations { get; private set; } = [];
     }
 }

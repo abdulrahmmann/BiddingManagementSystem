@@ -36,10 +36,9 @@ namespace BiddingManagementSystem.Domain.Entities
 
         // FOREIGN KEYS
         public int BidId { get; private set; }
-        public int EvaluatorId { get; private set; }
 
 
         // NAVIGATION PROPERTIES
-
+        public Bid Bid { get; private set; }
     }
 }

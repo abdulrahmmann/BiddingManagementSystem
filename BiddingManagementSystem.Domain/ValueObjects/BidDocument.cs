@@ -1,24 +1,26 @@
-﻿namespace BiddingManagementSystem.Domain.Entities
-{
-    public class TenderDocument
-    {
-        public int Id { get; private set; }
+﻿using BiddingManagementSystem.Domain.Entities;
 
+namespace BiddingManagementSystem.Domain.ValueObjects
+{
+    public class BidDocument
+    {
         public string Name { get; private set; } = string.Empty;
 
         public string FilePath { get; private set; } = string.Empty;
 
-        public TenderDocument(string name, string filePath, int tenderId)
+        public BidDocument(string name, string filePath, int bidId)
         {
             Name = name;
             FilePath = filePath;
-            TenderId = tenderId;
+            BidId = bidId;
         }
+
 
         // ************************************************************* //
         // ------------------------> RELATIONS <------------------------ //
         // ************************************************************* //
-        public int TenderId { get; private set; }
-        // public Tender Tender { get; private set; }
+
+        public int BidId { get; private set; }
+        public Bid Bid { get; private set; }
     }
 }

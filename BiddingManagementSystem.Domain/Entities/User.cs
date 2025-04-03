@@ -16,12 +16,23 @@ namespace BiddingManagementSystem.Domain.Entities
 
         public UserRole Role { get; private set; } // ENUM
 
+        private User() { }
+
+        public User(string name, string email, string password, UserRole role)
+        {
+            Name = name;
+            Email = email;
+            Password = password;
+            Role = role;
+            CreatedAt = DateTime.UtcNow;
+        }
+
         // ************************************************************* //
         // ------------------------> RELATIONS <------------------------ //
         // ************************************************************* //
 
-        public List<Tender> CreatedTenders { get; private set; } = new List<Tender>();
+        public List<Tender> CreatedTenders { get; private set; } = [];
 
-        public List<Bid> SubmittedBids { get; private set; } = new List<Bid>();
+        public List<Bid> SubmittedBids { get; private set; } = [];
     }
 }
