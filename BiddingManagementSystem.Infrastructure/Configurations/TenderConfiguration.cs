@@ -32,9 +32,18 @@ namespace BiddingManagementSystem.Infrastructure.Configurations
                    .HasColumnName("IssuedBy")
                    .HasMaxLength(400);
 
-            builder.Property(t => new { t.Deadline, t.IssueDate, t.ClosingDate })
+            builder.Property(t => t.Deadline)
+                .HasDefaultValueSql("GETUTCDATE()")
+                .ValueGeneratedOnAdd();
+
+            builder.Property(t => t.IssueDate)
                    .HasDefaultValueSql("GETUTCDATE()")
                    .ValueGeneratedOnAdd();
+
+            builder.Property(t => t.ClosingDate)
+                   .HasDefaultValueSql("GETUTCDATE()")
+                   .ValueGeneratedOnAdd();
+
 
             builder.Property(t => t.Email)
                    .HasColumnName("Email")
@@ -47,6 +56,11 @@ namespace BiddingManagementSystem.Infrastructure.Configurations
                    .OnDelete(DeleteBehavior.NoAction)
                    .HasConstraintName("FK_Tender_User");
 
+
+            builder.OwnsMany(t => t.EligibilityCriteria, doc =>
+            {
+                doc.WithOwner();
+            });
 
             builder.OwnsMany(t => t.Documents, doc =>
             {
@@ -72,7 +86,6 @@ namespace BiddingManagementSystem.Infrastructure.Configurations
                 money.Property(t => t.Currency)
                    .IsRequired();
             });
-
 
             builder.OwnsOne(t => t.Address, add =>
             {

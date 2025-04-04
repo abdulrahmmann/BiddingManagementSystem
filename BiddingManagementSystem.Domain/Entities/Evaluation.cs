@@ -10,10 +10,13 @@ namespace BiddingManagementSystem.Domain.Entities
 
         public List<decimal> Scores { get; private set; } = [];
 
-        public List<EvaluationCriteria> Criterias { get; private set; } = [];
+
+        private readonly List<EvaluationCriteria> _evaluationCriterias = []; // VALUE OBJECT
+        public IReadOnlyCollection<EvaluationCriteria> EvaluationCriterias => _evaluationCriterias.AsReadOnly();
 
         public DateTime EvaluationDate { get; private set; }
 
+        public Evaluation() { }
         public Evaluation(List<decimal> Scores)
         {
             TotalScore = CalculateTotalScore(Scores);

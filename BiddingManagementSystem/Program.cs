@@ -1,4 +1,4 @@
-using BiddingManagementSystem.Infrastructure.Context;
+using BiddingManagementSystem.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

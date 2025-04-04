@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 using System.Reflection;
 
-namespace BiddingManagementSystem.Infrastructure.Context
+namespace BiddingManagementSystem.Infrastructure.Persistence
 {
     public class ApplicationContext : DbContext
     {

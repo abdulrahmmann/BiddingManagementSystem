@@ -39,6 +39,7 @@ namespace BiddingManagementSystem.Domain.Entities
 
         public PaymentTerms PaymentTerms { get; private set; } = null!; // VALUE OBJECT
 
+        public Tender() { }
         public Tender(int referenceNumber, string title, string description, string issuedBy, DateTime deadline,
             DateTime issueDate, DateTime closingDate, string email, TenderType type, TenderIndustry industry,
             Money budgetRange, int createdById, User User)

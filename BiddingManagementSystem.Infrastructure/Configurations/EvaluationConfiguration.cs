@@ -29,6 +29,11 @@ namespace BiddingManagementSystem.Infrastructure.Configurations
                    .OnDelete(DeleteBehavior.NoAction)
                    .HasConstraintName("FK_Evaluations_Bid");
 
+
+            builder.OwnsMany(e => e.EvaluationCriterias, doc =>
+            {
+                doc.WithOwner();
+            });
         }
     }
 }
