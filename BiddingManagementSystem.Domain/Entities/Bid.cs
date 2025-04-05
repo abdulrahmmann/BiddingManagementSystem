@@ -57,12 +57,12 @@ namespace BiddingManagementSystem.Domain.Entities
 
         // FOREIGN KEYS
         public int TenderId { get; private set; }
-        public int UserId { get; private set; }
+        public string UserId { get; private set; } = string.Empty;
         public int BidderId { get; private set; }
 
         // NAVIGATION PROPERTIES
         public Tender Tender { get; private set; } = null!;
-        public User User { get; private set; } = null!;
+        public AppUser User { get; private set; } = null!;
         public Bidder Bidder { get; private set; }
 
         public ICollection<Evaluation> Evaluations { get; private set; } = [];

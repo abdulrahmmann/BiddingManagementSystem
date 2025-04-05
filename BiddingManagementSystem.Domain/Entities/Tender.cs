@@ -42,7 +42,7 @@ namespace BiddingManagementSystem.Domain.Entities
         public Tender() { }
         public Tender(int referenceNumber, string title, string description, string issuedBy, DateTime deadline,
             DateTime issueDate, DateTime closingDate, string email, TenderType type, TenderIndustry industry,
-            Money budgetRange, int createdById, User User)
+            Money budgetRange, string createdById, AppUser User)
         {
             ReferenceNumber = referenceNumber;
             Title = title;
@@ -76,11 +76,11 @@ namespace BiddingManagementSystem.Domain.Entities
         // ************************************************************* //
 
         // FOREIGN KEYS
-        public int CreatedById { get; private set; }
+        public string CreatedById { get; private set; }
 
 
         // NAVIGATION PROPERTIES
-        public User User { get; private set; } = null!;
+        public AppUser User { get; private set; } = null!;
         public ICollection<Bid> Bids { get; private set; } = [];
         public ICollection<Bidder> Bidders { get; private set; } = [];
     }

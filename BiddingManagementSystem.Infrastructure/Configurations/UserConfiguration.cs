@@ -1,12 +1,13 @@
-﻿using BiddingManagementSystem.Domain.Entities;
+﻿/*
+using BiddingManagementSystem.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BiddingManagementSystem.Infrastructure.Configurations
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User>
+    public class UserConfiguration : IEntityTypeConfiguration<AppUser>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<AppUser> builder)
         {
             builder.ToTable("User");
 
@@ -44,3 +45,4 @@ namespace BiddingManagementSystem.Infrastructure.Configurations
         }
     }
 }
+*/
