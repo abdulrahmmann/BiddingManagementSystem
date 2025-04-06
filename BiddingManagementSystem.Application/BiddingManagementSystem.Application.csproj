@@ -12,8 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\TenderFeature\CommandHandler\" />
-    <Folder Include="Features\TenderFeature\Commands\" />
     <Folder Include="Features\UserFeature\QueryHandler\" />
     <Folder Include="Features\UserFeature\Queries\" />
   </ItemGroup>

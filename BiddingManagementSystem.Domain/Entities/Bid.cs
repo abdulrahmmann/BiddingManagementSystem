@@ -17,9 +17,6 @@ namespace BiddingManagementSystem.Domain.Entities
 
         public DateTime SubmittedAt { get; private set; }
 
-        private readonly List<BidDocument> _documents = []; // VALUE OBJECT
-        public IReadOnlyCollection<BidDocument> Documents => _documents.AsReadOnly();
-
         private readonly List<BidItem> _items = [];
         public IReadOnlyCollection<BidItem> Items => _items.AsReadOnly();
 
@@ -31,12 +28,6 @@ namespace BiddingManagementSystem.Domain.Entities
             TotalBidAmount = totalBidAmount;
             Status = status;
             SubmittedAt = submittedAt;
-        }
-
-        public void AddDocument(BidDocument document)
-        {
-            if (document == null) throw new ArgumentNullException(nameof(document));
-            _documents.Add(document);
         }
 
         public void AddItem(string description, int quantity, decimal unitPrice)
@@ -66,5 +57,6 @@ namespace BiddingManagementSystem.Domain.Entities
         public Bidder Bidder { get; private set; }
 
         public ICollection<Evaluation> Evaluations { get; private set; } = [];
+        public ICollection<BidDocument> BidDocuments { get; private set; } = [];
     }
 }

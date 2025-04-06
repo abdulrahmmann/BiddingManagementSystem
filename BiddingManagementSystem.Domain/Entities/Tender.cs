@@ -31,11 +31,7 @@ namespace BiddingManagementSystem.Domain.Entities
 
         public Address Address { get; private set; } = null!;// VALUE OBJECT
 
-        private readonly List<EligibilityCriteria> _eligibilityCriteria = []; // VALUE OBJECT
-        public IReadOnlyCollection<EligibilityCriteria> EligibilityCriteria => _eligibilityCriteria.AsReadOnly();
-
-        private readonly List<TenderDocument> _documents = []; // VALUE OBJECT
-        public IReadOnlyCollection<TenderDocument> Documents => _documents.AsReadOnly();
+        public EligibilityCriteria EligibilityCriteria { get; private set; } // VALUE OBJECT
 
         public PaymentTerms PaymentTerms { get; private set; } = null!; // VALUE OBJECT
 
@@ -60,18 +56,6 @@ namespace BiddingManagementSystem.Domain.Entities
             this.User = User;
         }
 
-        public void AddDocument(TenderDocument document)
-        {
-            if (document == null) throw new ArgumentNullException(nameof(document));
-            _documents.Add(document);
-        }
-
-        public void AddEligibilityCriteria(EligibilityCriteria criteria)
-        {
-            if (criteria == null) throw new ArgumentNullException(nameof(criteria));
-            _eligibilityCriteria.Add(criteria);
-        }
-
         // ************************************************************* //
         // ------------------------> RELATIONS <------------------------ //
         // ************************************************************* //
@@ -79,10 +63,10 @@ namespace BiddingManagementSystem.Domain.Entities
         // FOREIGN KEYS
         public string CreatedById { get; private set; }
 
-
         // NAVIGATION PROPERTIES
         public AppUser User { get; private set; } = null!;
         public ICollection<Bid> Bids { get; private set; } = [];
         public ICollection<Bidder> Bidders { get; private set; } = [];
+        public ICollection<TenderDocument> TenderDocument { get; private set; }
     }
 }

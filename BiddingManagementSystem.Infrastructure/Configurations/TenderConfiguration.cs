@@ -56,24 +56,16 @@ namespace BiddingManagementSystem.Infrastructure.Configurations
                    .OnDelete(DeleteBehavior.NoAction)
                    .HasConstraintName("FK_Tender_User");
 
+            builder.HasMany(t => t.TenderDocument)
+                   .WithOne()
+                   .HasForeignKey(t => t.TenderDocumentId)
+                   .OnDelete(DeleteBehavior.NoAction)
+                   .HasConstraintName("FK_Tender_Document");
 
-            builder.OwnsMany(t => t.EligibilityCriteria, doc =>
+
+            builder.OwnsOne(t => t.EligibilityCriteria, doc =>
             {
                 doc.WithOwner();
-            });
-
-            builder.OwnsMany(t => t.Documents, doc =>
-            {
-                doc.WithOwner();
-                doc.Property(t => t.Name)
-                   .HasColumnName("DocumentName")
-                   .IsRequired()
-                   .HasMaxLength(16);
-
-                doc.Property(t => t.FilePath)
-                   .HasColumnName("DocumentPath")
-                   .IsRequired()
-                   .HasMaxLength(255);
             });
 
 

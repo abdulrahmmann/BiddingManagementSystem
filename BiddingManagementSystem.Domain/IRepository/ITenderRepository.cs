@@ -8,5 +8,7 @@ namespace BiddingManagementSystem.Domain.IRepository
 
         public Task<Tender> GetTenderByIdAsync(int Id);
 
+        public Task CreateTenderAsync(Tender Tender);
+
     }
 }

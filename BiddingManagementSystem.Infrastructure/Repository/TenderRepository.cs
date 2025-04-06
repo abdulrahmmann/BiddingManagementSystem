@@ -30,6 +30,18 @@ namespace BiddingManagementSystem.Infrastructure.Repository
         {
             return await _dbContext.Tenders.SingleOrDefaultAsync(t => t.Id == Id);
         }
+
+        public async Task CreateTenderAsync(Tender Tender)
+        {
+            var isExist = await _dbContext.Tenders.AnyAsync(t => t.Id == Tender.Id);
+
+            if (isExist)
+            {
+                throw new Exception("Tender already exists");
+            }
+
+            await _dbContext.Tenders.AddAsync(Tender);
+        }
         #endregion
 
 
