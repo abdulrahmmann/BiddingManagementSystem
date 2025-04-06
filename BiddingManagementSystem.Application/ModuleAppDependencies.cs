@@ -20,9 +20,11 @@ namespace BiddingManagementSystem.Application
             // Register AutoMapper
             services.AddAutoMapper(typeof(MappingProfileNewUser).Assembly);
             services.AddAutoMapper(typeof(MappingProfileLoginUser).Assembly);
+            services.AddAutoMapper(typeof(MappingProfileTender).Assembly);
 
             // Register Fluent Validators
             services.AddValidatorsFromAssembly(typeof(RegisterUserCommandValidator).Assembly);
+            services.AddValidatorsFromAssembly(typeof(TenderDTOValidator).Assembly);
 
 
             return services;
