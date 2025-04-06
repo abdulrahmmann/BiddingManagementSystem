@@ -6,7 +6,6 @@
         public int Weight { get; private set; }
 
         public EvaluationCriteria() { }
-
         public EvaluationCriteria(string criterionName, int weight)
         {
             if (string.IsNullOrWhiteSpace(criterionName))

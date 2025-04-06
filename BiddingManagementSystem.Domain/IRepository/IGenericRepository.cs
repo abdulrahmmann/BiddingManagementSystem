@@ -1,4 +1,4 @@
-﻿namespace BiddingManagementSystem.Infrastructure.GenericRepository
+﻿namespace BiddingManagementSystem.Domain.IRepository
 {
     public interface IGenericRepository<T> where T : class
     {

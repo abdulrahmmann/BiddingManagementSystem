@@ -34,7 +34,7 @@ namespace BiddingManagementSystem.Domain.Entities
         private readonly List<EligibilityCriteria> _eligibilityCriteria = []; // VALUE OBJECT
         public IReadOnlyCollection<EligibilityCriteria> EligibilityCriteria => _eligibilityCriteria.AsReadOnly();
 
-        public readonly List<TenderDocument> _documents = []; // VALUE OBJECT
+        private readonly List<TenderDocument> _documents = []; // VALUE OBJECT
         public IReadOnlyCollection<TenderDocument> Documents => _documents.AsReadOnly();
 
         public PaymentTerms PaymentTerms { get; private set; } = null!; // VALUE OBJECT
@@ -42,7 +42,7 @@ namespace BiddingManagementSystem.Domain.Entities
         public Tender() { }
         public Tender(int referenceNumber, string title, string description, string issuedBy, DateTime deadline,
             DateTime issueDate, DateTime closingDate, string email, TenderType type, TenderIndustry industry,
-            Money budgetRange, string createdById, AppUser User)
+            Money budgetRange, Address Address, string createdById, AppUser User)
         {
             ReferenceNumber = referenceNumber;
             Title = title;
@@ -55,6 +55,7 @@ namespace BiddingManagementSystem.Domain.Entities
             Type = type;
             Industry = industry;
             BudgetRange = budgetRange;
+            this.Address = Address;
             CreatedById = createdById;
             this.User = User;
         }

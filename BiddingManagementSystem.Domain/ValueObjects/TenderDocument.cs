@@ -1,6 +1,4 @@
-﻿using BiddingManagementSystem.Domain.Entities;
-
-namespace BiddingManagementSystem.Domain.ValueObjects
+﻿namespace BiddingManagementSystem.Domain.ValueObjects
 {
     public class TenderDocument
     {
@@ -13,13 +11,6 @@ namespace BiddingManagementSystem.Domain.ValueObjects
         {
             Name = name;
             FilePath = filePath;
-            TenderId = tenderId;
         }
-
-        // ************************************************************* //
-        // ------------------------> RELATIONS <------------------------ //
-        // ************************************************************* //
-        public int TenderId { get; private set; }
-        public Tender Tender { get; private set; }
     }
 }

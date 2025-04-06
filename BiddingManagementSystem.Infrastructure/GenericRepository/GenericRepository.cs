@@ -1,4 +1,5 @@
-﻿using BiddingManagementSystem.Infrastructure.Persistence;
+﻿using BiddingManagementSystem.Domain.IRepository;
+using BiddingManagementSystem.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace BiddingManagementSystem.Infrastructure.GenericRepository

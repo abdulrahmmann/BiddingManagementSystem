@@ -1,4 +1,5 @@
-﻿using BiddingManagementSystem.Infrastructure.GenericRepository;
+﻿using BiddingManagementSystem.Domain.IRepository;
+using BiddingManagementSystem.Infrastructure.GenericRepository;
 using BiddingManagementSystem.Infrastructure.Persistence;
 
 namespace BiddingManagementSystem.Application.UOF

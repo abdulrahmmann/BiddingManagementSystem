@@ -1,4 +1,4 @@
-﻿using BiddingManagementSystem.Infrastructure.GenericRepository;
+﻿using BiddingManagementSystem.Domain.IRepository;
 
 namespace BiddingManagementSystem.Application.UOF
 {
