@@ -1,4 +1,5 @@
 ﻿using BiddingManagementSystem.Application.Features.UserFeature.Mapping;
+using BiddingManagementSystem.Application.UOF;
 using BiddingManagementSystem.Application.Validation;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +13,9 @@ namespace BiddingManagementSystem.Application
         {
             // Register MediatR
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
+            // REGISTER UNIT OF WORK
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             // Register AutoMapper
             services.AddAutoMapper(typeof(MappingProfileNewUser).Assembly);

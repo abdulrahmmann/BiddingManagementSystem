@@ -1,5 +1,6 @@
 using BiddingManagementSystem.Application;
 using BiddingManagementSystem.Domain.Entities;
+using BiddingManagementSystem.Infrastructure;
 using BiddingManagementSystem.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +25,9 @@ builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationContext>()
     .AddDefaultTokenProviders();
 
-builder.Services.AddAppDependencies();
+builder.Services
+    .AddAppDependencies()
+    .AddInfrastructureDependencies();
 
 var app = builder.Build();
 
