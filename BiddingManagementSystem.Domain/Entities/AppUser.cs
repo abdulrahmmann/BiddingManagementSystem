@@ -7,9 +7,17 @@ namespace BiddingManagementSystem.Domain.Entities
     {
         public DateTime CreatedAt { get; private set; }
 
-        public UserRole Role { get; private set; }
+        public UserRole Role { get; private set; } = UserRole.User;
 
         private AppUser() { }
+
+        public AppUser(string userName, string email)
+        {
+            UserName = userName;
+            Email = email;
+            CreatedAt = DateTime.UtcNow;
+        }
+
 
         // ************************************************************* //
         // ------------------------> RELATIONS <------------------------ //

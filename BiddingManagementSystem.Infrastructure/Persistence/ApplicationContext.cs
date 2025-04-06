@@ -1,5 +1,4 @@
 ﻿using BiddingManagementSystem.Domain.Entities;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
@@ -26,11 +25,13 @@ namespace BiddingManagementSystem.Infrastructure.Persistence
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+            /*
             modelBuilder.Ignore<IdentityUserLogin<string>>();
             modelBuilder.Ignore<IdentityUserRole<string>>();
             modelBuilder.Ignore<IdentityUserClaim<string>>();
             modelBuilder.Ignore<IdentityUserToken<string>>();
             modelBuilder.Ignore<IdentityUser<string>>();
+            */
         }
         protected override void ConfigureConventions(ModelConfigurationBuilder builder)
         {
