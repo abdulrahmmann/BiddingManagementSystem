@@ -14,7 +14,7 @@
             FilePath = filePath;
         }
 
-        public int TenderDocumentId { get; private set; }
+        public int FK_Tender_Document_Id { get; private set; }
         public Tender Tender { get; private set; }
     }
 }

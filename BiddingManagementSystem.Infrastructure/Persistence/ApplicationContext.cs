@@ -8,12 +8,13 @@ namespace BiddingManagementSystem.Infrastructure.Persistence
 {
     public class ApplicationContext : IdentityDbContext<AppUser>
     {
-        // public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Bid> Bids { get; set; }
         public virtual DbSet<Tender> Tenders { get; set; }
         public virtual DbSet<Evaluation> Evaluations { get; set; }
         public virtual DbSet<BidItem> BidItems { get; set; }
         public virtual DbSet<Bidder> Bidders { get; set; }
+        public virtual DbSet<TenderDocument> TenderDocument { get; set; }
+        public virtual DbSet<BidDocument> BidDocument { get; set; }
 
         public ApplicationContext() { }
 

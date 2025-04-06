@@ -13,7 +13,7 @@ namespace BiddingManagementSystem.Infrastructure.Configurations
             builder.HasKey(e => e.Id);
 
             builder.Property(e => e.Id)
-                   .HasColumnName("EvaluationId")
+                   .HasColumnName("PK_EvaluationId")
                    .ValueGeneratedOnAdd()
                    .UseIdentityColumn();
 
@@ -25,15 +25,13 @@ namespace BiddingManagementSystem.Infrastructure.Configurations
 
             builder.HasOne(e => e.Bid)
                    .WithMany(bi => bi.Evaluations)
-                   .HasForeignKey(e => e.BidId)
+                   .HasForeignKey(e => e.FK_Evaluation_Bid_Id)
                    .OnDelete(DeleteBehavior.NoAction)
                    .HasConstraintName("FK_Evaluations_Bid");
 
+            builder.Property(e => e.TotalScore).HasPrecision(18, 2);
 
-            builder.OwnsMany(e => e.EvaluationCriterias, doc =>
-            {
-                doc.WithOwner();
-            });
+            builder.ComplexProperty(bi => bi.Ev_Criteria);
         }
     }
 }

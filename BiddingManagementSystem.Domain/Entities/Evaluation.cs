@@ -10,9 +10,7 @@ namespace BiddingManagementSystem.Domain.Entities
 
         public List<decimal> Scores { get; private set; } = [];
 
-
-        private readonly List<EvaluationCriteria> _evaluationCriterias = []; // VALUE OBJECT
-        public IReadOnlyCollection<EvaluationCriteria> EvaluationCriterias => _evaluationCriterias.AsReadOnly();
+        public EvaluationCriteria Ev_Criteria { get; private set; } = null!;
 
         public DateTime EvaluationDate { get; private set; }
 
@@ -38,7 +36,7 @@ namespace BiddingManagementSystem.Domain.Entities
         // ************************************************************* //
 
         // FOREIGN KEYS
-        public int BidId { get; private set; }
+        public int FK_Evaluation_Bid_Id { get; private set; }
 
 
         // NAVIGATION PROPERTIES

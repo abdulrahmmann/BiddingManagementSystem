@@ -13,42 +13,38 @@ namespace BiddingManagementSystem.Infrastructure.Configurations
             builder.HasKey(b => b.Id);
 
             builder.Property(b => b.Id)
-                   .HasColumnName("BidId")
+                   .HasColumnName("PK_BidId")
                    .ValueGeneratedOnAdd()
                    .UseIdentityColumn();
 
-            builder.HasIndex(b => b.UserId);
+            builder.HasIndex(b => b.TotalBidAmount);
 
             builder.Property(b => b.SubmittedAt)
                    .HasDefaultValueSql("GETUTCDATE()")
                    .ValueGeneratedOnAdd();
 
+            builder.Property(b => b.TotalBidAmount).HasPrecision(18, 2);
+
             // Bid - Tender -> One - to - Many
             builder.HasOne(b => b.Tender)
-                   .WithMany()
-                   .HasForeignKey(b => b.TenderId)
+                   .WithMany(bi => bi.Bids)
+                   .HasForeignKey(b => b.FK_Bid_Tender_Id)
                    .OnDelete(DeleteBehavior.NoAction)
                    .HasConstraintName("FK_Bid_Tender");
 
             // Bid - Bidder -> One - to - One
             builder.HasOne(b => b.Bidder)
-                   .WithMany()
-                   .HasForeignKey(b => b.BidderId)
+                   .WithMany(bi => bi.Bids)
+                   .HasForeignKey(b => b.FK_Bid_Bidder_Id)
                    .OnDelete(DeleteBehavior.NoAction)
                    .HasConstraintName("FK_Bid_Bidder");
 
             // Bid - User -> One - to - One
             builder.HasOne(b => b.User)
-                   .WithMany()
-                   .HasForeignKey(b => b.UserId)
+                   .WithMany(bi => bi.SubmittedBids)
+                   .HasForeignKey(b => b.FK_Bid_User_Id)
                    .OnDelete(DeleteBehavior.NoAction)
                    .HasConstraintName("FK_Bid_User");
-
-            builder.HasMany(b => b.BidDocuments)
-                   .WithOne()
-                   .HasForeignKey(b => b.BidDocumentId)
-                   .OnDelete(DeleteBehavior.NoAction)
-                   .HasConstraintName("FK_Bid_Document");
         }
     }
 }

@@ -9,7 +9,7 @@
         public decimal UnitPrice { get; private set; }
         public decimal TotalPrice => Quantity * UnitPrice;
 
-        public int BidId { get; private set; }
+        public int FK_Bid_Item_Id { get; private set; }
         public Bid Bid { get; private set; }
 
         private BidItem() { }

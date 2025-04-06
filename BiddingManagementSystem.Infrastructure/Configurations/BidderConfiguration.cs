@@ -13,13 +13,13 @@ namespace BiddingManagementSystem.Infrastructure.Configurations
             builder.HasKey(b => b.Id);
 
             builder.Property(b => b.Id)
-                   .HasColumnName("BidderId")
+                   .HasColumnName("PK_BidderId")
                    .ValueGeneratedOnAdd()
                    .UseIdentityColumn();
 
             builder.HasOne(t => t.Tender)
                 .WithMany(b => b.Bidders)
-                .HasForeignKey(t => t.TenderId)
+                .HasForeignKey(t => t.FK_Bidder_Tender_Id)
                 .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_Bidder_Tender");
         }

@@ -1,6 +1,4 @@
-﻿using BiddingManagementSystem.Domain.Entities;
-
-namespace BiddingManagementSystem.Domain.ValueObjects
+﻿namespace BiddingManagementSystem.Domain.Entities
 {
     public class BidDocument
     {
@@ -16,7 +14,7 @@ namespace BiddingManagementSystem.Domain.ValueObjects
             FilePath = filePath;
         }
 
-        public int BidDocumentId { get; private set; }
+        public int FK_Bid_Document_Id { get; private set; }
         public Bid Bid { get; private set; }
     }
 }

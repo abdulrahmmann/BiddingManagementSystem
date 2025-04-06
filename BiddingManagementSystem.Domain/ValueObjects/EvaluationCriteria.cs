@@ -2,7 +2,7 @@
 {
     public class EvaluationCriteria
     {
-        public string CriterionName { get; private set; }
+        public string CriterionName { get; private set; } = string.Empty;
         public int Weight { get; private set; }
 
         public EvaluationCriteria() { }

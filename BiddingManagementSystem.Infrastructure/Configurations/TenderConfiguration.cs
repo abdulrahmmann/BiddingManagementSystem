@@ -51,72 +51,39 @@ namespace BiddingManagementSystem.Infrastructure.Configurations
 
 
             builder.HasOne(t => t.User)
-                   .WithMany()
-                   .HasForeignKey(t => t.CreatedById)
+                   .WithMany(u => u.CreatedTenders)
+                   .HasForeignKey(t => t.FK_Tender_User_Id)
                    .OnDelete(DeleteBehavior.NoAction)
                    .HasConstraintName("FK_Tender_User");
 
-            builder.HasMany(t => t.TenderDocument)
-                   .WithOne()
-                   .HasForeignKey(t => t.TenderDocumentId)
-                   .OnDelete(DeleteBehavior.NoAction)
-                   .HasConstraintName("FK_Tender_Document");
-
-
-            builder.OwnsOne(t => t.EligibilityCriteria, doc =>
+            builder.ComplexProperty(t => t.ElgCriteria, owned =>
             {
-                doc.WithOwner();
+                owned.Property(owned => owned.RequiresBusinessLicense).HasColumnName("ElgC_ReqBizLicense");
+                owned.Property(owned => owned.MinimumExperienceYears).HasColumnName("ElgC_MinExpYears");
+                owned.Property(owned => owned.FinancialStabilityRequirement).HasColumnName("ElgC_FinStabReq");
+                owned.Property(owned => owned.IndustryCompliance).HasColumnName("ElgC_IndComp");
             });
 
 
-            builder.OwnsOne(t => t.BudgetRange, money =>
+            builder.ComplexProperty(t => t.BudgetRange);
+
+            builder.ComplexProperty(t => t.Address, adr =>
             {
-                money.WithOwner();
-                money.Property(t => t.Amount)
-                   .IsRequired();
-
-                money.Property(t => t.Currency)
-                   .IsRequired();
-            });
-
-            builder.OwnsOne(t => t.Address, add =>
-            {
-                add.WithOwner();
-
-                add.Property(t => t.Country)
+                adr.Property(t => t.Country)
                    .IsRequired()
                    .HasMaxLength(16);
-
-                add.Property(t => t.City)
+                adr.Property(t => t.City)
                    .IsRequired()
                    .HasMaxLength(16);
-
-                add.Property(t => t.Street)
+                adr.Property(t => t.Street)
                   .IsRequired()
                   .HasMaxLength(16);
-
-                add.Property(t => t.ZipCode)
+                adr.Property(t => t.ZipCode)
                   .IsRequired()
                   .HasMaxLength(16);
             });
 
-            builder.OwnsOne(t => t.PaymentTerms, term =>
-            {
-                term.WithOwner();
-
-                term.Property(t => t.PenaltyOfDelays)
-                   .IsRequired();
-
-                term.Property(t => t.AdvancePercentage)
-                   .IsRequired();
-
-                term.Property(t => t.FinalApprovalPercentage)
-                   .IsRequired();
-
-                term.Property(t => t.MilestonePercentage)
-                   .IsRequired();
-            });
-
+            builder.ComplexProperty(t => t.PaymentTerms);
         }
     }
 }

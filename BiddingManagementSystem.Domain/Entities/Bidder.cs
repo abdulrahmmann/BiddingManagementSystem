@@ -14,7 +14,7 @@
 
         public string Address { get; private set; } = string.Empty;
 
-        public int TenderId { get; private set; }
+        public int FK_Bidder_Tender_Id { get; private set; }
 
         public Tender Tender { get; private set; } = null!;
 

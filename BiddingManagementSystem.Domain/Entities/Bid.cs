@@ -1,5 +1,4 @@
 ﻿using BiddingManagementSystem.Domain.Enums;
-using BiddingManagementSystem.Domain.ValueObjects;
 
 namespace BiddingManagementSystem.Domain.Entities
 {
@@ -47,9 +46,9 @@ namespace BiddingManagementSystem.Domain.Entities
         // ************************************************************* //
 
         // FOREIGN KEYS
-        public int TenderId { get; private set; }
-        public string UserId { get; private set; } = string.Empty;
-        public int BidderId { get; private set; }
+        public int FK_Bid_Tender_Id { get; private set; }
+        public string FK_Bid_User_Id { get; private set; } = string.Empty;
+        public int FK_Bid_Bidder_Id { get; private set; }
 
         // NAVIGATION PROPERTIES
         public Tender Tender { get; private set; } = null!;

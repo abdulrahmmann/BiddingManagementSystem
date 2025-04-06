@@ -31,14 +31,15 @@ namespace BiddingManagementSystem.Domain.Entities
 
         public Address Address { get; private set; } = null!;// VALUE OBJECT
 
-        public EligibilityCriteria EligibilityCriteria { get; private set; } // VALUE OBJECT
+        public EligibilityCriteria ElgCriteria { get; private set; } = null!; // VALUE OBJECT
 
         public PaymentTerms PaymentTerms { get; private set; } = null!; // VALUE OBJECT
 
         public Tender() { }
+
         public Tender(int referenceNumber, string title, string description, string issuedBy, DateTime deadline,
             DateTime issueDate, DateTime closingDate, string email, TenderType type, TenderIndustry industry,
-            Money budgetRange, Address Address, string createdById, AppUser User)
+            Money budgetRange, Address Address, EligibilityCriteria Criteria, string createdById)
         {
             ReferenceNumber = referenceNumber;
             Title = title;
@@ -52,8 +53,8 @@ namespace BiddingManagementSystem.Domain.Entities
             Industry = industry;
             BudgetRange = budgetRange;
             this.Address = Address;
-            CreatedById = createdById;
-            this.User = User;
+            this.ElgCriteria = Criteria;
+            FK_Tender_User_Id = createdById;
         }
 
         // ************************************************************* //
@@ -61,12 +62,12 @@ namespace BiddingManagementSystem.Domain.Entities
         // ************************************************************* //
 
         // FOREIGN KEYS
-        public string CreatedById { get; private set; }
+        public string FK_Tender_User_Id { get; private set; } = string.Empty;
 
         // NAVIGATION PROPERTIES
         public AppUser User { get; private set; } = null!;
         public ICollection<Bid> Bids { get; private set; } = [];
         public ICollection<Bidder> Bidders { get; private set; } = [];
-        public ICollection<TenderDocument> TenderDocument { get; private set; }
+        public ICollection<TenderDocument> TenderDocument { get; private set; } = [];
     }
 }
