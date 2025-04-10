@@ -14,6 +14,7 @@ namespace BiddingManagementSystem.Infrastructure
 
             //REGISTER REPOSITORIES
             services.AddScoped<ITenderRepository, TenderRepository>();
+            services.AddScoped<IBidRepository, BidRepository>();
 
             return services;
         }

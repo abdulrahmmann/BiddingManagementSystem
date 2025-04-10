@@ -12,6 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\BidFeature\CommandHandler\" />
+    <Folder Include="Features\BidFeature\Commands\" />
+    <Folder Include="Features\BidFeature\DTOs\" />
+    <Folder Include="Features\BidFeature\Mapping\" />
+    <Folder Include="Features\BidFeature\Queries\" />
+    <Folder Include="Features\BidFeature\QueryHandler\" />
     <Folder Include="Features\UserFeature\QueryHandler\" />
     <Folder Include="Features\UserFeature\Queries\" />
   </ItemGroup>
@@ -21,6 +27,7 @@
     <PackageReference Include="FluentValidation" Version="11.11.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
     <PackageReference Include="MediatR" Version="12.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.3" />
   </ItemGroup>
 

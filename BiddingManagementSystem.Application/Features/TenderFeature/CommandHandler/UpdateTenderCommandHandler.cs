@@ -2,7 +2,6 @@
 using BiddingManagementSystem.Application.Features.TenderFeature.Commands;
 using BiddingManagementSystem.Application.UOF;
 using BiddingManagementSystem.Domain.Entities;
-using BiddingManagementSystem.Domain.IRepository;
 using MediatR;
 
 namespace BiddingManagementSystem.Application.Features.TenderFeature.CommandHandler
@@ -11,15 +10,13 @@ namespace BiddingManagementSystem.Application.Features.TenderFeature.CommandHand
     {
         #region INSTANCE FIELDS
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ITenderRepository _tenderRepository;
         private readonly IMapper _mapper;
         #endregion
 
         #region INJECT INSTANCES INTO CONSTRUCTOR
-        public UpdateTenderCommandHandler(IUnitOfWork unitOfWork, ITenderRepository tenderRepository, IMapper mapper)
+        public UpdateTenderCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            _tenderRepository = tenderRepository;
             _mapper = mapper;
         }
         #endregion
@@ -33,7 +30,7 @@ namespace BiddingManagementSystem.Application.Features.TenderFeature.CommandHand
                     return false;
                 }
 
-                var existingTender = await _tenderRepository.GetTenderByIdAsync(request.Id);
+                var existingTender = await _unitOfWork.Tenders.GetTenderByIdAsync(request.Id);
 
                 if (existingTender == null)
                 {
@@ -42,7 +39,7 @@ namespace BiddingManagementSystem.Application.Features.TenderFeature.CommandHand
 
                 var updatedTender = _mapper.Map<Tender>(request.TenderDto);
 
-                await _tenderRepository.UpdateTenderAsync(request.Id, updatedTender);
+                await _unitOfWork.Tenders.UpdateTenderAsync(request.Id, updatedTender);
 
                 await _unitOfWork.SaveChangesAsync();
 

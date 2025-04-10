@@ -3,7 +3,6 @@ using BiddingManagementSystem.Application.Common;
 using BiddingManagementSystem.Application.Features.TenderFeature.DTOs;
 using BiddingManagementSystem.Application.Features.TenderFeature.Queries;
 using BiddingManagementSystem.Application.UOF;
-using BiddingManagementSystem.Domain.IRepository;
 using MediatR;
 
 namespace BiddingManagementSystem.Application.Features.TenderFeature.QueryHandler
@@ -12,15 +11,13 @@ namespace BiddingManagementSystem.Application.Features.TenderFeature.QueryHandle
     {
         #region INSTANCE FIELDS
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ITenderRepository _tenderRepository;
         private readonly IMapper _mapper;
         #endregion
 
         #region INJECT INSTANCES INTO CONSTRUCTOR
-        public GetAllTendersQueryHandler(IUnitOfWork unitOfWork, ITenderRepository tenderRepository, IMapper mapper)
+        public GetAllTendersQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            _tenderRepository = tenderRepository;
             _mapper = mapper;
         }
         #endregion
@@ -30,7 +27,7 @@ namespace BiddingManagementSystem.Application.Features.TenderFeature.QueryHandle
         {
             try
             {
-                var tenders = await _tenderRepository.GetAllTendersAsync();
+                var tenders = await _unitOfWork.Tenders.GetAllTendersAsync();
 
                 if (!tenders.Any())
                 {

@@ -1,9 +1,7 @@
-﻿using AutoMapper;
-using BiddingManagementSystem.Application.Common;
+﻿using BiddingManagementSystem.Application.Common;
 using BiddingManagementSystem.Application.Features.TenderFeature.Commands;
 using BiddingManagementSystem.Application.UOF;
 using BiddingManagementSystem.Domain.Entities;
-using BiddingManagementSystem.Domain.IRepository;
 using BiddingManagementSystem.Domain.ValueObjects;
 using MediatR;
 
@@ -13,16 +11,12 @@ namespace BiddingManagementSystem.Application.Features.TenderFeature.CommandHand
     {
         #region INSTANCE FIELDS
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ITenderRepository _tenderRepository;
-        private readonly IMapper _mapper;
         #endregion
 
         #region INJECT INSTANCES INTO CONSTRUCTOR
-        public CreateTenderCommandHandler(IUnitOfWork unitOfWork, ITenderRepository tenderRepository, IMapper mapper)
+        public CreateTenderCommandHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _tenderRepository = tenderRepository;
-            _mapper = mapper;
         }
         #endregion
 
@@ -77,7 +71,7 @@ namespace BiddingManagementSystem.Application.Features.TenderFeature.CommandHand
                     PaymentTerms: paymentTerms
                 );
 
-                await _tenderRepository.CreateTenderAsync(tender);
+                await _unitOfWork.Tenders.CreateTenderAsync(tender);
 
                 await _unitOfWork.SaveChangesAsync();
 

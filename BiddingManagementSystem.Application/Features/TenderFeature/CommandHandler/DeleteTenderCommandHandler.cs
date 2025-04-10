@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using BiddingManagementSystem.Application.Features.TenderFeature.Commands;
+﻿using BiddingManagementSystem.Application.Features.TenderFeature.Commands;
 using BiddingManagementSystem.Application.UOF;
-using BiddingManagementSystem.Domain.IRepository;
 using MediatR;
 
 namespace BiddingManagementSystem.Application.Features.TenderFeature.CommandHandler
@@ -10,18 +8,15 @@ namespace BiddingManagementSystem.Application.Features.TenderFeature.CommandHand
     {
         #region INSTANCE FIELDS
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ITenderRepository _tenderRepository;
-        private readonly IMapper _mapper;
         #endregion
 
         #region INJECT INSTANCES INTO CONSTRUCTOR
-        public DeleteTenderCommandHandler(IUnitOfWork unitOfWork, ITenderRepository tenderRepository, IMapper mapper)
+        public DeleteTenderCommandHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _tenderRepository = tenderRepository;
-            _mapper = mapper;
         }
         #endregion
+
         public async Task<bool> Handle(DeleteTenderCommand request, CancellationToken cancellationToken)
         {
             try
@@ -31,14 +26,14 @@ namespace BiddingManagementSystem.Application.Features.TenderFeature.CommandHand
                     return false;
                 }
 
-                var existingTender = await _tenderRepository.GetTenderByIdAsync(request.Id);
+                var existingTender = await _unitOfWork.Tenders.GetTenderByIdAsync(request.Id);
 
                 if (existingTender == null)
                 {
                     return false;
                 }
 
-                await _tenderRepository.DeleteTenderAsync(request.Id);
+                await _unitOfWork.Tenders.DeleteTenderAsync(request.Id);
 
                 await _unitOfWork.SaveChangesAsync();
 

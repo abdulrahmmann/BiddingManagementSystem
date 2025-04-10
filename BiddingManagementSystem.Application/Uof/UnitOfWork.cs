@@ -9,15 +9,20 @@ namespace BiddingManagementSystem.Application.UOF
         #region INSTANCE FILEDS
         private readonly ApplicationContext _dbContext;
         private Dictionary<Type, object> _repositories;
+
+        public ITenderRepository Tenders { get; }
+        public IBidRepository Bids { get; }
         #endregion
 
         #region INJECT INSTANCES INTO CONSTRUCTORS
-        public UnitOfWork(ApplicationContext dbContext)
+        public UnitOfWork(ApplicationContext dbContext, ITenderRepository tenders, IBidRepository bids)
         {
             _dbContext = dbContext;
             _repositories = new Dictionary<Type, object>();
-
+            Tenders = tenders;
+            Bids = bids;
         }
+
         #endregion
 
         public IGenericRepository<T> GetRepository<T>() where T : class
