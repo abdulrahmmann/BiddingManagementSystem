@@ -23,6 +23,7 @@ namespace BiddingManagementSystem.Application.Features.UserFeature.CommandHandle
         }
         #endregion
 
+
         public async Task<BaseResponse<bool>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
             try

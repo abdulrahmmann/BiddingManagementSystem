@@ -37,6 +37,11 @@ namespace BiddingManagementSystem.Application.UOF
             _dbContext.SaveChanges();
         }
 
+        public async Task SaveChangesAsync()
+        {
+            await _dbContext.SaveChangesAsync();
+        }
+
         public void Dispose()
         {
             _dbContext.Dispose();

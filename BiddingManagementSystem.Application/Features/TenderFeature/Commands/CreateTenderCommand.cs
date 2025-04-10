@@ -4,5 +4,5 @@ using MediatR;
 
 namespace BiddingManagementSystem.Application.Features.TenderFeature.Commands
 {
-    public record CreateTenderCommand(TenderDTO TenderDTO) : IRequest<BaseResponse<bool>>;
+    public record CreateTenderCommand(CreateTenderDTO TenderDTO) : IRequest<BaseResponse<bool>>;
 }

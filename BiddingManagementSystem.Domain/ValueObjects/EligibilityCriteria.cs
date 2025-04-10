@@ -10,7 +10,7 @@
 
         public bool IndustryCompliance { get; private set; }
 
-        private EligibilityCriteria() { }
+        public EligibilityCriteria() { }
 
         public EligibilityCriteria(bool requiresBusinessLicense, int minimumExperienceYears,
             bool financialStabilityRequirement, bool industryCompliance)

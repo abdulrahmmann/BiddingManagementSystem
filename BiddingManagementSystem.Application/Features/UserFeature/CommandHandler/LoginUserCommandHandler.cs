@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿/*
+ using AutoMapper;
 using BiddingManagementSystem.Application.Common;
 using BiddingManagementSystem.Application.Features.UserFeature.Commands;
 using BiddingManagementSystem.Domain.Entities;
@@ -12,7 +13,7 @@ using System.Text;
 
 namespace BiddingManagementSystem.Application.Features.UserFeature.CommandHandler
 {
-    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, BaseResponse<bool>>
+    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, LoginResponse>
     {
         #region INSTANCE FIELDS
         private readonly UserManager<AppUser> _userManager;
@@ -30,7 +31,7 @@ namespace BiddingManagementSystem.Application.Features.UserFeature.CommandHandle
         }
         #endregion
 
-        public async Task<BaseResponse<bool>> Handle(LoginUserCommand request, CancellationToken cancellationToken)
+        public async Task<LoginResponse> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -39,7 +40,10 @@ namespace BiddingManagementSystem.Application.Features.UserFeature.CommandHandle
 
                 if (isExist is null)
                 {
-                    return BaseResponse<bool>.ConflictResponse($"The User with UserName: [ {request.UserDTO.UserName} ] is Not Exist!!");
+                    return new LoginResponse
+                    {
+                        Message = $"The User with UserName: [ {request.UserDTO.UserName} ] is Not Exist!!"
+                    };
                 }
 
                 // map the DTO to the AppUser entity.
@@ -82,18 +86,28 @@ namespace BiddingManagementSystem.Application.Features.UserFeature.CommandHandle
                         token = new JwtSecurityTokenHandler().WriteToken(token),
                         expiration = token.ValidTo,
                     };
+
+                    return _token;
+
                 }
 
                 // return BaseResponse<bool>.CreatedResponse(true, "User Logged in successfully");
 
                 // user creation failed.
-                return BaseResponse<bool>.UnAuthorizeResponse("UnAuthorize User");
-
+                return new LoginResponse
+                {
+                    Message = $"The User with UserName: [ {request.UserDTO.UserName} ] is UnAuthorize!!"
+                };
             }
             catch (Exception ex)
             {
-                return BaseResponse<bool>.ErrorResponse(ex.Message);
+                return new LoginResponse
+                {
+                    Message = ex.Message
+                };
             }
         }
     }
 }
+
+ */

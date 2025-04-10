@@ -6,5 +6,7 @@ namespace BiddingManagementSystem.Application.UOF
     {
         IGenericRepository<T> GetRepository<T>() where T : class;
         void SaveChanges();
+
+        Task SaveChangesAsync();
     }
 }

@@ -1,5 +1,4 @@
-﻿using BiddingManagementSystem.Domain.Enums;
-using BiddingManagementSystem.Domain.ValueObjects;
+﻿using BiddingManagementSystem.Domain.ValueObjects;
 
 namespace BiddingManagementSystem.Domain.Entities
 {
@@ -23,9 +22,9 @@ namespace BiddingManagementSystem.Domain.Entities
 
         public string Email { get; private set; } = string.Empty;
 
-        public TenderType Type { get; private set; } // ENUM
+        public string Type { get; private set; } = string.Empty; // ENUM
 
-        public TenderIndustry Industry { get; private set; } // ENUM
+        public string Industry { get; private set; } // ENUM
 
         public Money BudgetRange { get; private set; } = null!; // VALUE OBJECT
 
@@ -38,8 +37,8 @@ namespace BiddingManagementSystem.Domain.Entities
         public Tender() { }
 
         public Tender(int referenceNumber, string title, string description, string issuedBy, DateTime deadline,
-            DateTime issueDate, DateTime closingDate, string email, TenderType type, TenderIndustry industry,
-            Money budgetRange, Address Address, EligibilityCriteria Criteria, string createdById)
+            DateTime issueDate, DateTime closingDate, string email, string type, string industry,
+            Money budgetRange, Address Address, EligibilityCriteria Criteria, PaymentTerms PaymentTerms)
         {
             ReferenceNumber = referenceNumber;
             Title = title;
@@ -54,7 +53,7 @@ namespace BiddingManagementSystem.Domain.Entities
             BudgetRange = budgetRange;
             this.Address = Address;
             this.ElgCriteria = Criteria;
-            FK_Tender_User_Id = createdById;
+            this.PaymentTerms = PaymentTerms;
         }
 
         // ************************************************************* //
@@ -62,7 +61,7 @@ namespace BiddingManagementSystem.Domain.Entities
         // ************************************************************* //
 
         // FOREIGN KEYS
-        public string FK_Tender_User_Id { get; private set; } = string.Empty;
+        public string FK_Tender_User_Id { get; set; } = string.Empty;
 
         // NAVIGATION PROPERTIES
         public AppUser User { get; private set; } = null!;

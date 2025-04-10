@@ -71,6 +71,17 @@ namespace BiddingManagementSystem.Infrastructure.Repository
         {
             _dbContext.SaveChanges();
         }
+
+        public Task UpdateTenderAsync(int Id, Tender Tender)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task DeleteTenderAsync(int Id)
+        {
+            var entity = await _dbContext.Tenders.FindAsync(Id);
+            _dbContext.Remove(entity);
+        }
         #endregion
     }
 }

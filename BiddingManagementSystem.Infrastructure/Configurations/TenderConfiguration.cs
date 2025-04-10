@@ -54,7 +54,7 @@ namespace BiddingManagementSystem.Infrastructure.Configurations
                    .WithMany(u => u.CreatedTenders)
                    .HasForeignKey(t => t.FK_Tender_User_Id)
                    .OnDelete(DeleteBehavior.NoAction)
-                   .HasConstraintName("FK_Tender_User");
+                   .HasConstraintName("FK_Tender_User_ReferenceNumber");
 
             builder.ComplexProperty(t => t.ElgCriteria, owned =>
             {

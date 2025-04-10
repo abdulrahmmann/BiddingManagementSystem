@@ -18,9 +18,10 @@ namespace BiddingManagementSystem.Application
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             // Register AutoMapper
-            services.AddAutoMapper(typeof(MappingProfileNewUser).Assembly);
-            services.AddAutoMapper(typeof(MappingProfileLoginUser).Assembly);
-            services.AddAutoMapper(typeof(MappingProfileTender).Assembly);
+            services.AddAutoMapper(typeof(MappingProfileNewUser));
+            services.AddAutoMapper(typeof(MappingProfileLoginUser));
+            //services.AddAutoMapper(typeof(MappingProfileTender));
+            //services.AddAutoMapper(typeof(CreateTenderMappingProfile));
 
             // Register Fluent Validators
             services.AddValidatorsFromAssembly(typeof(RegisterUserCommandValidator).Assembly);

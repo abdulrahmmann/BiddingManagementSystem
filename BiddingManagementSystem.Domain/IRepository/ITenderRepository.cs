@@ -9,6 +9,7 @@ namespace BiddingManagementSystem.Domain.IRepository
         public Task<Tender> GetTenderByIdAsync(int Id);
 
         public Task CreateTenderAsync(Tender Tender);
-
+        public Task UpdateTenderAsync(int Id, Tender Tender);
+        public Task DeleteTenderAsync(int Id);
     }
 }
