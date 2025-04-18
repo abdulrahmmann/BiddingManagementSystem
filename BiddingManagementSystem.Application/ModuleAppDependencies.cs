@@ -1,4 +1,6 @@
-﻿using BiddingManagementSystem.Application.Features.UserFeature.Mapping;
+﻿using BiddingManagementSystem.Application.Features.BidFeature.Mapping;
+using BiddingManagementSystem.Application.Features.UserFeature.Mapping;
+using BiddingManagementSystem.Application.MappingProfiles;
 using BiddingManagementSystem.Application.UOF;
 using BiddingManagementSystem.Application.Validation;
 using FluentValidation;
@@ -20,8 +22,9 @@ namespace BiddingManagementSystem.Application
             // Register AutoMapper
             services.AddAutoMapper(typeof(MappingProfileNewUser));
             services.AddAutoMapper(typeof(MappingProfileLoginUser));
-            //services.AddAutoMapper(typeof(MappingProfileTender));
-            //services.AddAutoMapper(typeof(CreateTenderMappingProfile));
+            services.AddAutoMapper(typeof(MappingProfileTender));
+            services.AddAutoMapper(typeof(CreateTenderMappingProfile));
+            services.AddAutoMapper(typeof(MappingProfileBidDetails));
 
             // Register Fluent Validators
             services.AddValidatorsFromAssembly(typeof(RegisterUserCommandValidator).Assembly);

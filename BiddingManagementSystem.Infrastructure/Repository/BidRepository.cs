@@ -24,9 +24,14 @@ namespace BiddingManagementSystem.Infrastructure.Repository
             _dbContext.Add(entity);
         }
 
+        public async Task CreateBidAsync(Bid bid)
+        {
+            await _dbContext.Bids.AddAsync(bid);
+        }
+
         public void Delete(int Id)
         {
-            var entity = _dbContext.Tenders.Find(Id);
+            var entity = _dbContext.Bids.Find(Id);
             _dbContext.Remove(entity);
         }
 

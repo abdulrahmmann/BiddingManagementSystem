@@ -3,5 +3,5 @@ using MediatR;
 
 namespace BiddingManagementSystem.Application.Features.TenderFeature.Commands
 {
-    public record UpdateTenderCommand(int Id, TenderDTO TenderDto) : IRequest<bool>;
+    public record UpdateTenderCommand(int Id, UpdateTenderDTO TenderDto) : IRequest<bool>;
 }

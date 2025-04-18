@@ -9,7 +9,6 @@ namespace BiddingManagementSystem.Application.UOF
         #region INSTANCE FILEDS
         private readonly ApplicationContext _dbContext;
         private Dictionary<Type, object> _repositories;
-
         public ITenderRepository Tenders { get; }
         public IBidRepository Bids { get; }
         #endregion
